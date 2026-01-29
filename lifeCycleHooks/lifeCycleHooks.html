@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="LWC Lifecycle Hooks – Live Demo">
+
+        <div class="slds-p-around_medium">
+
+            <!-- Status Section -->
+            <p><strong>Status:</strong></p>
+            <ul>
+                <li>🟢 {createStatus}</li>
+                <li>🟢 {connectStatus}</li>
+                <li>🟢 {renderStatus}</li>
+            </ul>
+
+            <!-- User Action -->
+            <div class="slds-m-top_medium">
+                <lightning-button 
+                    label="Update UI (Trigger Re-render)" 
+                    variant="brand"
+                    onclick={handleUpdate}>
+                </lightning-button>
+            </div>
+
+            <!-- Dynamic Message -->
+            <template if:true={showMessage}>
+                <div class="slds-box slds-theme_success slds-m-top_medium">
+                    <p>✅ UI updated because state changed</p>
+                </div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>
