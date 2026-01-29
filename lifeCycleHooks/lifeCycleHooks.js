@@ -2,35 +2,42 @@ import { LightningElement } from 'lwc';
 
 export default class LifeCycleHooks extends LightningElement {
 
-     // UI-friendly messages
-    createStatus = '';
-    connectStatus = '';
-    renderStatus = '';
+   // Messages shown on UI
+    constructorMsg = '';
+    connectedMsg = '';
+    renderMsg = '';
+    renderedMsg = '';
     showMessage = false;
 
+    // 1️⃣ constructor
     constructor() {
         super();
-        // Runs when component is created
-        this.createStatus = 'Component created (constructor)';
+        this.constructorMsg = 'Component is created in memory';
     }
 
+    // 2️⃣ connectedCallback
     connectedCallback() {
-        // Runs when component is added to page
-        this.connectStatus = 'Component connected to the page (connectedCallback)';
+        this.connectedMsg = 'Component is added to the page (DOM)';
     }
 
+    // 3️⃣ render
+    render() {
+        this.renderMsg = 'Salesforce is deciding which HTML to show';
+        return super.render();
+    }
+
+    // 4️⃣ renderedCallback
     renderedCallback() {
-        // Runs after UI is rendered
-        this.renderStatus = 'UI rendered successfully (renderedCallback)';
+        this.renderedMsg = 'UI is now visible to the user';
     }
 
-    handleUpdate() {
-        // Changing state triggers re-render
+    // Button click → state change
+    handleClick() {
         this.showMessage = true;
     }
 
+    // 5️⃣ disconnectedCallback
     disconnectedCallback() {
-        // Runs when component is removed
-        alert('Component removed from page (disconnectedCallback)');
+        alert('Component removed → Cleanup done (disconnectedCallback)');
     }
 }
